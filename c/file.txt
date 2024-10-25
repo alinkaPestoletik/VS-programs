@@ -1,0 +1,1 @@
+cd "d:\VS programs\VS-programs\c\" ; if ($?) { gcc create_file.c -o create_file } ; if ($?) { .\create_file }

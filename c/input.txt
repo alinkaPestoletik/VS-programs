@@ -1,0 +1,2 @@
+ADD_STUDENT 2 Marko ComputerScience
+END
