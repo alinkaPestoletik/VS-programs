@@ -2,65 +2,59 @@ import java.io.*;
 public class task_3_4 {
     public static void main(String[] args) {
         Throwable firstException = null;
+        String[] numbers = {};
         try(FileInputStream in = new FileInputStream("input.txt");
         FileOutputStream out = new FileOutputStream("output.txt")) {
 
-        byte[] buffer = new byte[in.available()];
+            byte[] buffer = new byte[in.available()];
             in.read(buffer);
             String number = new String(buffer);
-            String[] numbers = number.split(" ");
-            if (numbers.length != 2)
-            {
-                throw new WrongAmountOfArg();
-            }
-
-            boolean integer = valid(numbers);
-            if (!(integer))
-            {
-                throw new NotIntegerExpection();
-            }
+            numbers = number.split(" ");
 
             if (Double.parseDouble(numbers[1]) == 0.0) {
-                throw new ArithmeticException("Division by zero");
+                throw new ArithmeticException("Cannot be divided by zero");
             }
+        }
 
-            else {
-                double answer = Double.parseDouble(numbers[0]) / Double.parseDouble(numbers[1]);
-                System.out.println(answer);
-            }
-
-        } 
         catch (IOException ex) {
-        System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
-
-        catch (WrongAmountOfArg ex) {
+        
+        catch (ArithmeticException ex) {
             firstException = ex;
-            System.out.println(ex.getMessage());
-        }
-
-        catch (NotIntegerExpection ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        catch (ArithmeticException ex){
             System.out.println(ex.getMessage());
         }
 
         finally {
             try {
-                fileIn.close();
-            } catch (NullPointerException npe) {
-                if (firstException != null) {
-                    npe.addSuppressed(firstException);
+                if (numbers.length != 2)
+                { throw new AmountOfIntegersException(); }
+    
+                boolean integer = valid(numbers);
+                if (!(integer))
+                { throw new TypeExpection(); }
+    
+                else {
+                    double answer = Double.parseDouble(numbers[0]) / Double.parseDouble(numbers[1]);
+                    System.out.println(answer);
                 }
-                throw npe;
+            } 
+    
+            catch (AmountOfIntegersException ex) {
+                if (firstException != null) {
+                    ex.addSuppressed(firstException);
+                }
+                System.out.println(ex.getMessage());
+            }
+    
+            catch (TypeExpection ex) {
+                System.out.println(ex.getMessage());
             }
         }
     }
 
-    public static class WrongAmountOfArg extends Exception{
-        public WrongAmountOfArg(){
+    public static class AmountOfIntegersException extends Exception{
+        public AmountOfIntegersException(){
             super("Wrong amount of inputs");
         }
     }
@@ -77,8 +71,8 @@ public class task_3_4 {
         return flag;
     }
 
-    public static class NotIntegerExpection extends Exception{
-        public NotIntegerExpection(){
+    public static class TypeExpection extends NullPointerException{
+        public TypeExpection(){
             super("Wrong types of inputs");
         }
     }
