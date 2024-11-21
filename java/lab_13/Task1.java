@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Task1 {
     public static void main(String[] args) {
-        Library<Book> bookLibrary = new Library<>();
-        Library<Video> videoLibrary = new Library<>();
-        Library<Newspaper> newspaperLibrary = new Library<>();
+        LibraryGeneric<Book> bookLibrary = new LibraryGeneric<>();
+        LibraryGeneric<Video> videoLibrary = new LibraryGeneric<>();
+        LibraryGeneric<Newspaper> newspaperLibrary = new LibraryGeneric<>();
         Book kolobok = new Book("Kolobok", "People", 10, 1873);
         bookLibrary.addInfo(kolobok);
         bookLibrary.deleteInfo(0);
