@@ -102,7 +102,7 @@ class Video extends Media {
     @Override
     public void displayAllInfo() {
         System.out.println("Video " + getTitle() + " is made by " + getAuthor() + " in " + getYear()
-        + " year, has genre " + genre + " and durention " + runtime + " .");
+        + " year, has genre " + genre + " ,and durention is " + runtime + " .");
     }
 }
 
