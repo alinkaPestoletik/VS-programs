@@ -3,7 +3,7 @@ public class task_3_4 {
     public static void main(String[] args) {
         Throwable firstException = null;
         String[] numbers = {};
-        try(FileInputStream in = new FileInputStream("input.txt");
+        try (FileInputStream in = new FileInputStream("input.txt");
         FileOutputStream out = new FileOutputStream("output.txt")) {
 
             byte[] buffer = new byte[in.available()];
