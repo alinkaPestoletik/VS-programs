@@ -1,10 +1,12 @@
 #include <stdio.h>
 int main() {
   char s[102];
-  scanf("%s", s);
+  gets(s);
   int len = 0;
-  for( ; s[len] != '\0'; len++); 
-  for(int i = len - 1; i >= 0; i--)
-  printf("%c", s[i]);
+  char *pointer = s;
+  while (*(pointer++) != '\0') {
+    len++;
+  }
+  printf("%d", len);
   return 0;
 }
